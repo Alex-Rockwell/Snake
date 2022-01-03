@@ -1,5 +1,6 @@
-import {update as updateSnake, draw as drawSnake , SNAKE_SPEED} from './snake.js'
-import {update as updateFood, draw as drawFood} from './food.js'
+import { update as updateSnake, draw as drawSnake , SNAKE_SPEED, getSnakeHead, snakeIntersection } from './snake.js'
+import { update as updateFood, draw as drawFood } from './food.js'
+import { outsideGrid } from './grid.js'
 
 let lastRenderTime = 0
 const gameBoard = document.querySelector('#game-board')
@@ -7,7 +8,10 @@ let gameOver = false
 
 function main(currentTime) {
   if (gameOver) {
-    return alert('you lose')
+    if (window.confirm('Click OK to restart')) {
+      window.location = '/'
+    }
+    return
   }
 
   let secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
@@ -26,7 +30,7 @@ window.requestAnimationFrame(main)
 function update() {
   updateSnake()
   updateFood()
-  checkDeth()
+  checkDeath()
 }
 
 function draw() {
