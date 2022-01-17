@@ -9,7 +9,7 @@ let gameOver = false
 function main(currentTime) {
   if (gameOver) {
     if (window.confirm('Click OK to restart')) {
-      window.location = '/'
+      window.location = './index.html'
     }
     return
   }
